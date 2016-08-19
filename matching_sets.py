@@ -9,7 +9,7 @@ n = 3
 x = [1, 2, 1, 2, 3, 3]
 y = [-1, 4, 4, -1, 3, 3]
 
-""" above is for input outside hackerRank editor """ 
+""" above is for input outside hackerRank editor """
 
 sumx = sum(x)
 sumy = sum(y)
@@ -40,6 +40,7 @@ y.sort()
 # print x
 # print y
 
+""" cutting arrays in half caused bias on odd number of element arrays """
 # x = x[0:len(x)/2]
 # y = y[0:len(y)/2]
 
