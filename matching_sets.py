@@ -9,6 +9,7 @@ n = 3
 x = [1, 2, 1, 2, 3, 3]
 y = [-1, 4, 4, -1, 3, 3]
 
+""" above is for input outside hackerRank editor """ 
 
 sumx = sum(x)
 sumy = sum(y)
@@ -19,59 +20,46 @@ if sumx != sumy:
     exit()
 
 # determine if they have the same sum
-print sumx, sumy
+# print sumx, sumy
 
+### removing dups in both arrays increased time-complexity by O(n), which is critical for large arrays, and caused time-out for test case#12
 # remove elements exist in both
-ynew = []
-for e in y:
-    if e in x:
-        x.remove(e)
-    else:
-        ynew.append(e)
-y = ynew
-print x
-print y
+# ynew = []
+# for e in y:
+# if e in x:
+# x.remove(e)
+# else:
+# ynew.append(e)
+# y = ynew
+# print x
+# print y
 
 x.sort()
 y.sort()
 
-x = x[0:len(x)/2]
-y = y[0:len(y)/2]
+# print x
+# print y
 
-print x
-print y
-c = 0
-for i in range(0, len(x)):
-    c += x[i] - y[i]
-
-print c
-exit()
-
-z = []
-for i in range(0, len(x)):
-    z.append(x[i] - y[i])
-
-print z
+# x = x[0:len(x)/2]
+# y = y[0:len(y)/2]
 
 i = 0
+# operation counts
 c = 0
 while i < len(x):
-    # xi > yi, xi-- x-i++
-    if x[i] > y[i]:
-        x[i] -= 1
-        x[len(x)-1 - i] += 1
-        c += 1
 
-    # xi < yi, xi++ x-i--
-    elif x[i] < y[i]:
-        x[i] += 1
-        x[len(x)-1 - i] -= 1
-        c += 1
+    ### calculating diffs significantly optimized the performance, passed all test cases
+    # if diff exist
+    if x[i] != y[i]:
+        # diff in value between x[i] and y[i]
+        diff_value = abs(x[i] - y[i])
+        x[i] = y[i]
+        c += diff_value
 
-    # xi == yi increment i
+        # xi == yi increment i
     else:
         i += 1
 
-print x
-print y
-print c
+# print x
+# print y
+print c / 2
