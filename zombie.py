@@ -22,7 +22,10 @@ def mergeCluster(zombie_list):
             if (i == z.zombie_id):
                 pass
             # print z.zombie_id, z.know_list,  i, zombie_list[i].know_list
-            z.know_list = z.know_list + zombie_list[i].know_list
+            """ optimization: deDup here to avoid performance issue with very long relation lists """
+            z.know_list = list(set(z.know_list + zombie_list[i].know_list))
+            """ fix: forward ith zombie's relation to it's knownZombies to fix the problem of <=2nd degree reached """
+            zombie_list[i].know_list = z.know_list
 
     # make sets from know_list
     know_list_sets = []
